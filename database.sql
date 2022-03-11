@@ -1,4 +1,4 @@
-CREATE IF NOT EXISTS DATABASE 'gamesuggestieapp';
+CREATE IF NOT EXISTS DATABASE gamesuggestieapp;
 
 USE DATABASE 'gamesuggestieapp';
 
@@ -43,9 +43,9 @@ INSERT INTO gameData (releaseYear, gameName, gamePublisher, gameGenre) VALUES (
 	(2018-06-15, "Among Us", "Innersloth", "Indie"),
 	(2016-04-05, "Job Simulator", "Owlchemy Labs", "VR"),
 	(2011-08-28, "The Binding of Isaac", "Edmund McMiller", "Indie" ),
-    (2022-02-25, "Elden ring", "From Software", "Action-adventure"),
-    (2021-09-16, "Call of Duty: Vanguard, Activison", "First person shooter"),
-    (2009-10-27, "League of legends", "Riot games", "Strategy"),
-    (2006-08-27, "Roblox", "Roblox Corporation", "Sandbox"),
-    (2014-04-01, "Goat simulator", "Coffee stain studio", "Indie"),
+	(2022-02-25, "Elden ring", "From Software", "Action-adventure"),
+    	(2021-09-16, "Call of Duty: Vanguard, Activison", "First person shooter"),
+    	(2009-10-27, "League of legends", "Riot games", "Strategy"),
+    	(2006-08-27, "Roblox", "Roblox Corporation", "Sandbox"),
+    	(2014-04-01, "Goat simulator", "Coffee stain studio", "Indie"),
 );
