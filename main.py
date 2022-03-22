@@ -47,16 +47,34 @@ def mainMenu():
             break    
     logout()
 
+
+
+
+
+
+# Als je een game 5 of lager geeft, is dat spel niet leuk, maar vind je games met dezelfde genre
+# misschien wel leuk. Daarom telt dat cijfer niet mee bij de berekening van het gemiddelde.
+# Vervolgens geef in een game met dezelfde genre een 8, Het gemiddelde van die genre gaat naar 8
+# In de recommendations krijg je alle games te zien in die genre die je nog niet gerate hebt.
 #[1] RECOMMENDATIONS MENU
 def recommendationsMenu():
     os.system('cls')
-    print(Style.BRIGHT +  Fore.GREEN + f"Account Information" + Style.RESET_ALL)
+    user = getUserInfo(loggedInID)
+    print(Style.BRIGHT +  Fore.GREEN + f"Recommendations Bases On Your Ratings" + Style.RESET_ALL)
     print("\n")
-    print(f"ID: {user[0]}")
-    print(f"Name : {user[1]}")
+    cursor.execute(f"SELECT gameData.gameGenre, COUNT(gameData.gameGenre), AVG(rating.ratingValue) FROM rating INNER JOIN gameData ON rating.gameID = gameData.gameID WHERE rating.userID = '{loggedInID}' AND rating.ratingValue >= 6 GROUP BY gameData.gameGenre")
+    records = cursor.fetchall()
+    for recommendedGenre in records:
+        print(recommendedGenre)
+        print(f"Omdat je {recommendedGenre[1]} game(s) in de Genre {recommendedGenre[0]} leuk vond.")
+        cursor.execute(f"SELECT gameID, gameName FROM gameData WHERE gameData.gameGenre = '{recommendedGenre[0]}' AND gameID NOT IN (SELECT gameID FROM rating WHERE userID = '{loggedInID}')")
+        records2 = cursor.fetchall()
+        for recommendedGame in records2:
+            print(f"[recommended] {recommendedGame[1]}")
+        print("\n")
+            
     print(Fore.RED + "[back]" + Style.RESET_ALL + " Go Back")
     print("\n")
-
     option = input("Enter your option: ")
     if option.isdigit():
         option = int(option)
@@ -64,17 +82,9 @@ def recommendationsMenu():
         option = str(option)
     
     while option != "back":
-        userInfoMenu()
+        recommendationsMenu()
         break
     mainMenu()
-    
-def getRecommendations(id):
-    cursor.execute(f"SELECT * FROM customer WHERE userID = '{id}'")
-    user = cursor.fetchone()
-    return user
-    
-
-
 
 
 
@@ -86,6 +96,7 @@ def userInfoMenu():
     print("\n")
     print(f"ID: {user[0]}")
     print(f"Name : {user[1]}")
+    print(f"You have placed {user[2]} ratings")
     print(Fore.RED + "[back]" + Style.RESET_ALL + " Go Back")
     print("\n")
 
@@ -101,7 +112,7 @@ def userInfoMenu():
     mainMenu()
     
 def getUserInfo(id):
-    cursor.execute(f"SELECT * FROM customer WHERE userID = '{id}'")
+    cursor.execute(f"SELECT customer.userID, customer.userName, COUNT(rating.ratingID) FROM customer INNER JOIN rating ON customer.userID = rating.userID WHERE customer.userID = '{id}'")
     user = cursor.fetchone()
     return user
 
@@ -282,7 +293,14 @@ def placeRating(gameID):
         else:
             placeRating(gameID)
     else:
-        option = int(input("What value would you like to give 0-10: "))
+        option = input("What value would you like to give 0-10: ")
+        if option.isdigit():
+            option = int(option)
+            if option not in range(1, 11):
+                placeRating(gameID)
+        else:
+            placeRating(gameID)
+
         insertDeleteUpdateQuery(f"INSERT INTO rating (gameID, userID, ratingValue) VALUES ('{gameID}', '{loggedInID}', '{option}')")
         ratingsMenu()
 
