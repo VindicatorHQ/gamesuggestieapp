@@ -65,7 +65,6 @@ def recommendationsMenu():
     cursor.execute(f"SELECT gameData.gameGenre, COUNT(gameData.gameGenre), AVG(rating.ratingValue) FROM rating INNER JOIN gameData ON rating.gameID = gameData.gameID WHERE rating.userID = '{loggedInID}' AND rating.ratingValue >= 6 GROUP BY gameData.gameGenre")
     records = cursor.fetchall()
     for recommendedGenre in records:
-        print(recommendedGenre)
         print(f"Omdat je {recommendedGenre[1]} game(s) in de Genre {recommendedGenre[0]} leuk vond.")
         cursor.execute(f"SELECT gameID, gameName FROM gameData WHERE gameData.gameGenre = '{recommendedGenre[0]}' AND gameID NOT IN (SELECT gameID FROM rating WHERE userID = '{loggedInID}')")
         records2 = cursor.fetchall()

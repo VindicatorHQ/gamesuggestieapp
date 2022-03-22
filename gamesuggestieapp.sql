@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Gegenereerd op: 15 mrt 2022 om 11:34
--- Serverversie: 10.4.22-MariaDB
--- PHP-versie: 8.1.2
+-- Gegenereerd op: 22 mrt 2022 om 14:59
+-- Serverversie: 10.4.21-MariaDB
+-- PHP-versie: 7.3.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -86,7 +86,21 @@ INSERT INTO `gamedata` (`gameID`, `releaseYear`, `gameName`, `gamePublisher`, `g
 (23, '2009-10-27', 'League of legends', 'Riot games', 'Strategy'),
 (24, '2006-08-27', 'Roblox', 'Roblox Corporation', 'Sandbox'),
 (25, '2014-04-01', 'Goat simulator', 'Coffee stain studio', 'Indie'),
-(26, '2021-10-07', 'Far Cry 6', 'Ubisoft', 'First-person shooter');
+(26, '2021-10-07', 'Far Cry 6', 'Ubisoft', 'First-person shooter'),
+(27, '2019-12-04', 'Lost Ark', 'Smilegate', 'MMO'),
+(28, '2004-11-23', 'World of Warcraft', 'Blizzard Entertainment', 'MMO'),
+(29, '2001-01-04', 'Runescape', 'Jagex', 'MMO'),
+(30, '2010-09-30', 'Final Fantasy XIV', 'Square Enix', 'MMO'),
+(31, '2016-03-03', 'Black Dessert Online', 'Pearl Abyss', 'MMO'),
+(32, '2011-11-11', 'The Elder Scrolls V: Skyrim', 'Bethesda Game Studios', 'Action adventure'),
+(33, '2012-08-16', 'Terraria', 'Re-Logic', 'Sandbox'),
+(34, '2016-02-25', 'Super Hot', 'Super Hot Team', 'VR'),
+(35, '2018-01-25', 'Celeste', 'Matt Makes Games', 'Indie'),
+(36, '2015-09-15', 'Undertale', 'Toby Fox', 'Indie'),
+(37, '2019-12-10', 'Boneworks', 'Stress Level Zero', 'VR'),
+(38, '2015-04-27', 'Kerbal space program', 'Squad', 'Simulation'),
+(39, '2010-08-12', 'World of tanks', 'Wargaming', 'Strategy'),
+(40, '2016-10-21', 'Civilization VI', 'Ed Beach', 'Strategy');
 
 -- --------------------------------------------------------
 
@@ -106,11 +120,19 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`ratingID`, `gameID`, `userID`, `ratingValue`) VALUES
-(3, 4, 1, 10),
-(4, 1, 1, 8),
-(5, 16, 1, 4),
-(6, 20, 1, 8),
-(7, 4, 2, 7);
+(59, 6, 4, 8),
+(60, 8, 4, 6),
+(61, 39, 4, 5),
+(62, 17, 4, 7),
+(63, 38, 2, 10),
+(64, 34, 2, 7),
+(65, 21, 2, 1),
+(66, 14, 2, 9),
+(67, 18, 2, 6),
+(68, 2, 2, 9),
+(69, 1, 1, 0),
+(70, 12, 1, 10),
+(71, 22, 1, 1);
 
 --
 -- Indexen voor geëxporteerde tabellen
@@ -151,13 +173,13 @@ ALTER TABLE `customer`
 -- AUTO_INCREMENT voor een tabel `gamedata`
 --
 ALTER TABLE `gamedata`
-  MODIFY `gameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `gameID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
 -- AUTO_INCREMENT voor een tabel `rating`
 --
 ALTER TABLE `rating`
-  MODIFY `ratingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `ratingID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=72;
 
 --
 -- Beperkingen voor geëxporteerde tabellen
