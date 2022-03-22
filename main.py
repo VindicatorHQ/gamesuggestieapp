@@ -295,7 +295,7 @@ def placeRating(gameID):
         option = input("What value would you like to give 0-10: ")
         if option.isdigit():
             option = int(option)
-            if option not in range(1, 11):
+            if option not in range(0, 11):
                 placeRating(gameID)
         else:
             placeRating(gameID)
@@ -309,8 +309,15 @@ def deleteRating(selectedRecommendationID):
 
 def editRating(selectedRecommendationID):
     os.system('cls')
-    option = int(input("What value would you like to give 0-10: "))
-    insertDeleteUpdateQuery(f"UPDATE rating SET ratingValue = '{option}' WHERE ratingID = '{selectedRecommendationID}' AND userID = '{loggedInID}'")
+    option = input("What value would you like to give 0-10: ")
+    if option.isdigit():
+        option = int(option)
+        if option not in range(0, 11):
+            editRating(selectedRecommendationID)
+        else:
+            insertDeleteUpdateQuery(f"UPDATE rating SET ratingValue = '{option}' WHERE ratingID = '{selectedRecommendationID}' AND userID = '{loggedInID}'")
+    else:
+        editRating(selectedRecommendationID)
 
 
 
