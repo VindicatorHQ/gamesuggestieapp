@@ -60,7 +60,7 @@ def mainMenu():
 def recommendationsMenu():
     os.system('cls')
     user = getUserInfo(loggedInID)
-    print(Style.BRIGHT +  Fore.GREEN + f"Recommendations Bases On Your Ratings" + Style.RESET_ALL)
+    print(Style.BRIGHT +  Fore.GREEN + f"Recommendations Based On Your Ratings" + Style.RESET_ALL)
     print("\n")
     cursor.execute(f"SELECT gameData.gameGenre, COUNT(gameData.gameGenre), AVG(rating.ratingValue) FROM rating INNER JOIN gameData ON rating.gameID = gameData.gameID WHERE rating.userID = '{loggedInID}' AND rating.ratingValue >= 6 GROUP BY gameData.gameGenre")
     records = cursor.fetchall()
